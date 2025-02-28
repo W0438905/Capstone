@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dx5dwnnoc3oer"]
+[gd_scene load_steps=4 format=3 uid="uid://dx5dwnnoc3oer"]
 
 [ext_resource type="Texture2D" uid="uid://b2mi7v0dcwpf3" path="res://Assets/Button.png" id="1_mnfuw"]
+[ext_resource type="Script" path="res://Scenes/Main_Menu_Button/main_menu_button.gd" id="2_yope0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7hv8s"]
 font_size = 24
@@ -12,15 +13,19 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -60.0
+offset_top = -45.0
+offset_right = 60.0
+offset_bottom = 45.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(60, 45)
+size_flags_horizontal = 4
+size_flags_vertical = 4
 texture_normal = ExtResource("1_mnfuw")
+script = ExtResource("2_yope0")
 
-[node name="Label" type="Label" parent="."]
+[node name="NameLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,3 +37,7 @@ text = "Beans"
 label_settings = SubResource("LabelSettings_7hv8s")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]
