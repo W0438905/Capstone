@@ -5,16 +5,16 @@
 
 <p align="center">
   <a href="https://godotengine.org/download/" target="_blank">
-    <img alt="Godot v4.3+" src="https://img.shields.io/badge/Godot_v4.3+-%23478cbf?color=478cbf&logo=godotengine&logoColor=ffedf5&style=for-the-badge" />
+	<img alt="Godot v4.3+" src="https://img.shields.io/badge/Godot_v4.3+-%23478cbf?color=478cbf&logo=godotengine&logoColor=ffedf5&style=for-the-badge" />
   </a>
   <a href="LICENSE">
-    <img alt="License" src="https://img.shields.io/github/license/nadjiel/eye-dropper?labelColor=ffedf5&color=06d6a0&style=for-the-badge">
+	<img alt="License" src="https://img.shields.io/github/license/nadjiel/eye-dropper?labelColor=ffedf5&color=06d6a0&style=for-the-badge">
   </a>
   <a href="https://github.com/nadjiel/eye-dropper/releases">
-    <img alt="Latest Release" src="https://img.shields.io/github/v/release/nadjiel/eye-dropper?labelColor=ffedf5&color=ef476f&style=for-the-badge">
+	<img alt="Latest Release" src="https://img.shields.io/github/v/release/nadjiel/eye-dropper?labelColor=ffedf5&color=ef476f&style=for-the-badge">
   </a>
   <a href="https://ko-fi.com/nadjiel">
-    <img alt="" src="https://img.shields.io/badge/Ko--fi-ffda6e?logo=kofi&color=ffda6e&style=for-the-badge" >
+	<img alt="" src="https://img.shields.io/badge/Ko--fi-ffda6e?logo=kofi&color=ffda6e&style=for-the-badge" >
   </a>
 </p>
 
@@ -76,7 +76,7 @@ If you like this project, consider supporting me on [Ko-fi](https://ko-fi.com/na
 
 <p align="center">
   <a href='https://ko-fi.com/J3J71AXVC6' target='_blank'>
-    <img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi2.png?v=6' border='0' alt='Buy Me a Coffee at ko-fi.com' />
+	<img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi2.png?v=6' border='0' alt='Buy Me a Coffee at ko-fi.com' />
   </a>
 </p>
 
