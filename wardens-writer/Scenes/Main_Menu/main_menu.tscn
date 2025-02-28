@@ -1,8 +1,11 @@
 [gd_scene load_steps=4 format=3 uid="uid://di45q81hkaqpk"]
 
 [ext_resource type="Script" path="res://Scenes/Main_Menu/main_menu.gd" id="1_4swfq"]
-[ext_resource type="Texture2D" uid="uid://co1b1enr02mk" path="res://Assets/LOGO_MAIN CROPPED.png" id="2_kvctb"]
 [ext_resource type="PackedScene" uid="uid://dx5dwnnoc3oer" path="res://Scenes/Main_Menu_Button/main_menu_button.tscn" id="3_kdd60"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_36pk6"]
+font_size = 64
+font_color = Color(0, 0, 0, 1)
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -13,45 +16,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4swfq")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Control" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-grow_horizontal = 2
-scale = Vector2(0.5, 0.5)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Control"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -714.5
-offset_right = 714.5
-offset_bottom = 731.0
-grow_horizontal = 2
-size_flags_horizontal = 6
-size_flags_vertical = 6
-theme_override_constants/margin_top = 64
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/MarginContainer2"]
-texture_filter = 1
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-texture = ExtResource("2_kvctb")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 15
@@ -59,16 +31,25 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 32
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
 layout_mode = 2
 
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Warden's Writer"
+label_settings = SubResource("LabelSettings_36pk6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Spacer" type="Control" parent="CanvasLayer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 350)
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 
 [node name="MainMenuButton" parent="CanvasLayer/MarginContainer/VBoxContainer" instance=ExtResource("3_kdd60")]
