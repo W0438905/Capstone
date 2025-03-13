@@ -4,20 +4,34 @@ extends TextureButton
 const HOVER_SCALE: Vector2 = Vector2(1.1, 1.1)
 const DEFAULT_SCALE: Vector2 = Vector2(1.0, 1.0)
 
-@export var button_name: String = "" # 
+@export var button_name: String = ""
 
-@onready var name_label: Label = $NameLabel
+@onready var name_label: Label = $MarginContainer/NameLabel
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	name_label.text = button_name.capitalize()
+	pivot_offset = Vector2(size.x / 2, size.y / 2)
+	# All other styling is done via themes
+	match button_name:
+		"write":
+			name_label.add_theme_font_size_override("font_size", 52)
+		"notes":
+			name_label.add_theme_font_size_override("font_size", 36)
+		"help":
+			name_label.add_theme_font_size_override("font_size", 34)
+		"options":
+			name_label.add_theme_font_size_override("font_size", 28)
+		"exit":
+			name_label.add_theme_font_size_override("font_size", 30)
+		"main_menu":
+			name_label.add_theme_font_size_override("font_size", 24)
+		_:
+			name_label.add_theme_font_size_override("font_size", 24)
 	
-	# make two exported vars, one for the display name and another for the path
-	# or format one to fill both
+	#name_label.add_theme_font_size_override("font_size", int(self.size.x / 5))
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 

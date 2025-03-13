@@ -8,20 +8,12 @@
 font_size = 64
 font_color = Color(0, 0, 0, 1)
 
-[node name="Control" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_4swfq")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="GlobalBackground" parent="." instance=ExtResource("2_fry56")]
 
-[node name="GlobalBackground" parent="CanvasLayer" instance=ExtResource("2_fry56")]
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -34,12 +26,13 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 0
+size_flags_vertical = 4
+theme_override_constants/separation = 15
 
-[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -48,37 +41,43 @@ label_settings = SubResource("LabelSettings_36pk6")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Spacer" type="Control" parent="CanvasLayer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 60)
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="Write" parent="CanvasLayer/MarginContainer/VBoxContainer" instance=ExtResource("3_kdd60")]
+[node name="Write" parent="MarginContainer/VBoxContainer" instance=ExtResource("3_kdd60")]
+custom_minimum_size = Vector2(220, 165)
 layout_mode = 2
+stretch_mode = 0
 button_name = "write"
 
-[node name="Notes" parent="CanvasLayer/MarginContainer/VBoxContainer" instance=ExtResource("3_kdd60")]
+[node name="Notes" parent="MarginContainer/VBoxContainer" instance=ExtResource("3_kdd60")]
+custom_minimum_size = Vector2(160, 120)
 layout_mode = 2
+stretch_mode = 0
 button_name = "notes"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_constants/separation = 500
 
-[node name="Help" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_kdd60")]
+[node name="Help" parent="MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_kdd60")]
+custom_minimum_size = Vector2(140, 105)
 layout_mode = 2
+stretch_mode = 0
 button_name = "help"
 
-[node name="Spacer2" type="Control" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(500, 0)
+[node name="Options" parent="MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_kdd60")]
+custom_minimum_size = Vector2(140, 105)
 layout_mode = 2
-
-[node name="Options" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_kdd60")]
-layout_mode = 2
+stretch_mode = 0
 button_name = "options"
 
-[node name="Exit" parent="CanvasLayer/MarginContainer/VBoxContainer" instance=ExtResource("3_kdd60")]
+[node name="Exit" parent="MarginContainer/VBoxContainer" instance=ExtResource("3_kdd60")]
 layout_mode = 2
+stretch_mode = 0
 button_name = "exit"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

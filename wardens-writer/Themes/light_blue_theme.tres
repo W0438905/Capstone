@@ -1,3 +1,8 @@
-[gd_resource type="Theme" format=3 uid="uid://cldijs2xqwyow"]
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cldijs2xqwyow"]
+
+[ext_resource type="FontFile" uid="uid://c7h4qns2dhj4k" path="res://Assets/Merriweather-Regular.ttf" id="1_wk335"]
 
 [resource]
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/constants/line_spacing = -3
+Label/fonts/font = ExtResource("1_wk335")

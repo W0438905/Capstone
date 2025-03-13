@@ -1,12 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dx5dwnnoc3oer"]
 
 [ext_resource type="Texture2D" uid="uid://b2mi7v0dcwpf3" path="res://Assets/Button.png" id="1_mnfuw"]
+[ext_resource type="Theme" uid="uid://cldijs2xqwyow" path="res://Themes/light_blue_theme.tres" id="1_ovllr"]
 [ext_resource type="Script" uid="uid://cxp12qgkir8xm" path="res://Scenes/Main_Menu_Button/main_menu_button.gd" id="2_yope0"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_7hv8s"]
-line_spacing = -3.0
-font_size = 24
-font_color = Color(0, 0, 0, 1)
 
 [node name="MainMenuButton" type="TextureButton"]
 anchors_preset = 8
@@ -20,22 +16,29 @@ offset_right = 60.0
 offset_bottom = 45.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(60, 45)
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme = ExtResource("1_ovllr")
 texture_normal = ExtResource("1_mnfuw")
 script = ExtResource("2_yope0")
 
-[node name="NameLabel" type="Label" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="NameLabel" type="Label" parent="MarginContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 1
 text = "Beans"
-label_settings = SubResource("LabelSettings_7hv8s")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
