@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://30wy0nb4fybi"]
+
+[ext_resource type="PackedScene" uid="uid://uqd1btdeeg5y" path="res://Scenes/Global_Background/global_background.tscn" id="1_5ole5"]
+[ext_resource type="LabelSettings" uid="uid://bsebaymfx3jlw" path="res://Scenes/Main_Menu_Button/main_menu_button.tres" id="2_gikk2"]
+[ext_resource type="PackedScene" uid="uid://dx5dwnnoc3oer" path="res://Scenes/Main_Menu_Button/main_menu_button.tscn" id="3_6abui"]
+
+[node name="NotesPage" type="CanvasLayer"]
+
+[node name="GlobalBackground" parent="." instance=ExtResource("1_5ole5")]
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Notes page"
+label_settings = ExtResource("2_gikk2")
+
+[node name="MainMenuButton" parent="." instance=ExtResource("3_6abui")]
+offset_top = 31.0
+offset_bottom = 121.0
+button_name = "main_menu"
