@@ -3,7 +3,6 @@ extends Node
 var database: SQLite
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# Create database
 	database = SQLite.new()
@@ -12,45 +11,66 @@ func _ready() -> void:
 	database.open_db() # Path to db set above. If db exists, use it. If not, make new one
 	
 	# Create Stories table
-	var story_table = {
-		"id": { "data_type": "int", "primary_key": true, "not_null": true, "auto_increment": true },
-		"title": { "data_type": "text", "not_null": true },
-		"author": { "data_type": "text" },
-		"description": { "data_type": "text" },
-		"createdAt": { "data_type": "text", "not_null": true },
-		"updatedAt": { "data_type": "text", "not_null": true }
-	}
+	var story_table: String = """
+		CREATE TABLE IF NOT EXISTS Stories (
+			"storyId" INTEGER NOT NULL,
+			"title" text NOT NULL,
+			"author" text,
+			"description" text,
+			"createdAt" text NOT NULL,
+			"updatedAt" text NOT NULL,
+			PRIMARY KEY("storyId" AUTOINCREMENT)
+		);
+	"""
 	
 	# Create Chapters table
-	var chapter_table = {
-		"id": { "data_type": "int", "primary_key": true, "not_null": true, "auto_increment": true },
-		"storyId": { "data_type": "int", "foreign_key": "Stories.id", "not_null": true},
-		"title": { "data_type": "text", "not_null": true },
-		"description": { "data_type": "text" },
-		"content": { "data_type": "text" },
-		"chapterOrder": { "data_type": "int", "not_null": true },
-		"createdAt": { "data_type": "text", "not_null": true },
-		"updatedAt": { "data_type": "text", "not_null": true }
-	}
+	var chapter_table: String = """
+		CREATE TABLE IF NOT EXISTS Chapters (
+			"chapterId" INTEGER NOT NULL,
+			"storyId" INTEGER NOT NULL,
+			"title" text NOT NULL,
+			"description" text,
+			"content" text,
+			"chapterOrder" INTEGER NOT NULL,
+			"createdAt" text NOT NULL,
+			"updatedAt" text NOT NULL,
+			PRIMARY KEY("chapterId" AUTOINCREMENT),
+			FOREIGN KEY("storyId") REFERENCES "Stories"("storyId") ON DELETE CASCADE
+		);
+	"""
 	
 	# Create Notes table
-	var note_table = {
-		"id": { "data_type": "int", "primary_key": true, "not_null": true, "auto_increment": true },
-		"storyId": { "data_type": "int", "foreign_key": "Stories.id", "not_null": true},
-		"chapterId": { "data_type": "int", "foreign_key": "Chapters.id" },
-		"noteType": { "data_type": "int", "not_null": true },
-		"title": { "data_type": "text", "not_null": true },
-		"content": { "data_type": "text" },
-		"createdAt": { "data_type": "text", "not_null": true },
-		"updatedAt": { "data_type": "text", "not_null": true }
-	}
+	var note_table: String = """
+		CREATE TABLE IF NOT EXISTS Notes (
+			"noteId" INTEGER NOT NULL,
+			"storyId" INTEGER NOT NULL,
+			"chapterId" INTEGER,
+			"noteType" INTEGER NOT NULL,
+			"title" text NOT NULL,
+			"content" text,
+			"createdAt" text NOT NULL,
+			"updatedAt" text NOT NULL,
+			PRIMARY KEY("noteId" AUTOINCREMENT),
+			FOREIGN KEY("chapterId") REFERENCES "Chapters"("chapterId") ON DELETE CASCADE,
+			FOREIGN KEY("storyId") REFERENCES "Stories"("storyId") ON DELETE CASCADE
+		);
+	"""
+	
+	# Drop each table (debug)
+	var result: bool = database.query("SELECT * FROM Stories; SELECT * FROM Chapters; SELECT * FROM Notes;")
+	if result:
+		database.drop_table("Notes")
+		database.drop_table("Chapters")
+		database.drop_table("Stories")
+		print("Dropped tables.")
+	else:
+		print("Tables not found.")
 	
 	# Add each table to the database
-	database.create_table("Stories", story_table)
-	database.create_table("Chapters", chapter_table)
-	database.create_table("Notes", note_table)
+	database.query(story_table)
+	database.query(chapter_table)
+	database.query(note_table)
 	
-
 
 # Scenes should call function(s) in db_manager to fill vars with queried data.
 # Queried data should be sent from db_manager to requesting scene.
