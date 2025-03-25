@@ -1,0 +1,59 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgswon5reow2g"]
+
+[ext_resource type="Theme" uid="uid://cldijs2xqwyow" path="res://Themes/light_blue_theme.tres" id="1_olj05"]
+
+[node name="BaseBar" type="HBoxContainer"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_olj05")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 40.0
+
+[node name="DragLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "="
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = " BeansBeansBeans "
+alignment = 0
+text_overrun_behavior = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="Spacer2" type="Control" parent="HBoxContainer2"]
+custom_minimum_size = Vector2(3, 0)
+layout_mode = 2
+
+[node name="MenuButton" type="MenuButton" parent="HBoxContainer2"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_olj05")
+text = "..."
+flat = false
+item_count = 3
+popup/item_0/text = "Info"
+popup/item_0/id = 0
+popup/item_1/text = "Edit"
+popup/item_1/id = 1
+popup/item_2/text = "Delete"
+popup/item_2/id = 2
+
+[node name="Spacer" type="Control" parent="HBoxContainer2"]
+custom_minimum_size = Vector2(15, 0)
+layout_mode = 2

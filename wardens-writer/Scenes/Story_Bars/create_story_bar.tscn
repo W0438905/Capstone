@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bss5trf6qu1gd"]
+
+[ext_resource type="PackedScene" uid="uid://obl1xjjcmfrq" path="res://Scenes/Base_Bars/base_create_bar.tscn" id="1_qk7a3"]
+[ext_resource type="Script" uid="uid://crm7lp4u6wrfe" path="res://Scenes/Story_Bars/create_story_bar.gd" id="2_om8gy"]
+
+[node name="CreateStoryBar" instance=ExtResource("1_qk7a3")]
+script = ExtResource("2_om8gy")
+
+[node name="CreateButton" parent="HBoxContainer" index="1"]
+text = " Create New Story "
+
+[connection signal="pressed" from="HBoxContainer/CreateButton" to="." method="_on_create_button_pressed"]

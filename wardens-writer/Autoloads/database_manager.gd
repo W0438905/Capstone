@@ -1,14 +1,14 @@
 extends Node
 
-var database: SQLite
+var db: SQLite
 
 
 func _ready() -> void:
 	# Create database
-	database = SQLite.new()
-	database.path = "res://wk_db.db" # The file path. May need tweaking when root folder is moved
-	database.foreign_keys = true # Allows foreign keys to be used
-	database.open_db() # Path to db set above. If db exists, use it. If not, make new one
+	db = SQLite.new()
+	db.path = "res://wk_db.db" # The file path. May need tweaking when root folder is moved
+	db.foreign_keys = true # Allows foreign keys to be used
+	db.open_db() # Path to db set above. If db exists, use it. If not, make new one
 	
 	# Create Stories table
 	var story_table: String = """
@@ -57,20 +57,17 @@ func _ready() -> void:
 	"""
 	
 	# Drop each table (debug)
-	var result: bool = database.query("SELECT * FROM Stories; SELECT * FROM Chapters; SELECT * FROM Notes;")
-	if result:
-		database.drop_table("Notes")
-		database.drop_table("Chapters")
-		database.drop_table("Stories")
-		print("Dropped tables.")
-	else:
-		print("Tables not found.")
+	#var result: bool = db.query("SELECT * FROM Stories; SELECT * FROM Chapters; SELECT * FROM Notes;")
+	#if result:
+		#db.drop_table("Notes")
+		#db.drop_table("Chapters")
+		#db.drop_table("Stories")
+		#print("Dropped tables.")
+	#else:
+		#print("Tables not found.")
+	# #######################
 	
 	# Add each table to the database
-	database.query(story_table)
-	database.query(chapter_table)
-	database.query(note_table)
-	
-
-# Scenes should call function(s) in db_manager to fill vars with queried data.
-# Queried data should be sent from db_manager to requesting scene.
+	db.query(story_table)
+	db.query(chapter_table)
+	db.query(note_table)

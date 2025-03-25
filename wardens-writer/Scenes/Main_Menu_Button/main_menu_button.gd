@@ -4,7 +4,7 @@ extends TextureButton
 const HOVER_SCALE: Vector2 = Vector2(1.1, 1.1)
 const DEFAULT_SCALE: Vector2 = Vector2(1.0, 1.0)
 
-@export var button_name: String = ""
+@export_enum("write", "notes", "help", "options", "exit", "main_menu") var button_name: String
 
 @onready var name_label: Label = $MarginContainer/NameLabel
 
@@ -35,8 +35,6 @@ func _ready() -> void:
 			name_label.add_theme_font_size_override("font_size", 24)
 		_:
 			name_label.add_theme_font_size_override("font_size", 24)
-	
-	
 
 
 func _process(delta: float) -> void:
@@ -46,6 +44,7 @@ func _process(delta: float) -> void:
 func _on_pressed() -> void:
 	# Put all of this logic into an autoload later
 	if button_name == "exit":
+		DatabaseManager.db.close_db() # Close database
 		get_tree().quit() # Exits the program
 	elif button_name == "main_menu":
 		# .capitalize() turns main_menu into Main Menu, which is not Main_Menu like I need it to be.
@@ -57,6 +56,7 @@ func _on_pressed() -> void:
 		get_tree().change_scene_to_file(button_route)
 		#print("Button Clicked: " + button_name) # Debug
 		#print("res://Scenes/" + button_name.capitalize() + "/" + button_name + ".tscn") # Debug
+		
 
 
 func _on_mouse_entered() -> void:

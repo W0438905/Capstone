@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1t2glu17hv6x"]
+
+[ext_resource type="PackedScene" uid="uid://dgswon5reow2g" path="res://Scenes/Base_Bars/base_selection_bar.tscn" id="1_0fqun"]
+[ext_resource type="Script" uid="uid://b8ja1ai4gidgj" path="res://Scenes/Story_Bars/story_selection_bar.gd" id="2_ch8up"]
+
+[node name="StorySelectionBar" instance=ExtResource("1_0fqun")]
+script = ExtResource("2_ch8up")
+
+[node name="MenuButton" parent="HBoxContainer2" index="1"]
+size_flags_vertical = 4
+item_count = 4
+popup/item_3/text = "Export As"
+popup/item_3/id = 3
