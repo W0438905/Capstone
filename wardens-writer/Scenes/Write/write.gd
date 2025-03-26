@@ -1,6 +1,7 @@
 extends CanvasLayer
 
-@onready var story_popup: Control = $StoryCreatePopup
+@onready var s_create_popup: Control = $StoryCreatePopup
+@onready var s_edit_popup: Control = $StoryEditPopup
 @onready var v_box_story: VBoxContainer = $MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxStory
 
 const STORY_SELECTION_BAR = preload("res://Scenes/Story_Bars/story_selection_bar.tscn")
@@ -10,6 +11,7 @@ var _popup_flag: bool = false
 
 func _ready() -> void:
 	SignalManager.story_create_popup.connect(story_create_popup)
+	SignalManager.story_edit_popup.connect(story_edit_popup)
 	add_story_bars()
 
 
@@ -21,9 +23,18 @@ func _process(delta: float) -> void:
 func story_create_popup(f: bool) -> void:
 	_popup_flag = f
 	if _popup_flag:
-		story_popup.visible = true
+		s_create_popup.visible = true
 	else:
-		story_popup.visible = false
+		s_create_popup.visible = false
+		add_story_bars()
+
+
+func story_edit_popup(f: bool) -> void:
+	_popup_flag = f
+	if _popup_flag:
+		s_edit_popup.visible = true
+	else:
+		s_edit_popup.visible = false
 		add_story_bars()
 
 
@@ -33,10 +44,10 @@ func add_story_bars() -> void:
 		c.queue_free()
 	
 	# Query database to get all stories
-	DatabaseManager.db.query("SELECT title FROM Stories ORDER BY updatedAt")
+	DatabaseManager.db.query("SELECT * FROM Stories ORDER BY updatedAt DESC")
 	var stories: Array[Dictionary] = DatabaseManager.db.query_result
 	
-	print(stories)
+	#print(stories)
 	
 	# Iterate through array
 	for story in stories:
@@ -46,9 +57,10 @@ func add_story_bars() -> void:
 		
 		# Send story info to story_selection_bar
 		new_bar.set_story_info({
-			"title": story["title"]#,
-			#"author": story["author"],
-			#"description": story["description"],
-			#"created_at": story["createdAt"],
-			#"updated_at": story["updatedAt"]
+			"story_id": story["storyId"],
+			"title": story["title"],
+			"author": story["author"],
+			"description": story["description"],
+			"created_at": story["createdAt"],
+			"updated_at": story["updatedAt"]
 		})

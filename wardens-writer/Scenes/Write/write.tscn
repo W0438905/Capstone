@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bc2yyhh6sft5s"]
+[gd_scene load_steps=8 format=3 uid="uid://bc2yyhh6sft5s"]
 
 [ext_resource type="PackedScene" uid="uid://uqd1btdeeg5y" path="res://Scenes/Global_Background/global_background.tscn" id="1_h536d"]
 [ext_resource type="Script" uid="uid://c0qdl57ej6uaq" path="res://Scenes/Write/write.gd" id="1_qglmm"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dx5dwnnoc3oer" path="res://Scenes/Main_Menu_Button/main_menu_button.tscn" id="2_oe373"]
 [ext_resource type="PackedScene" uid="uid://bss5trf6qu1gd" path="res://Scenes/Story_Bars/create_story_bar.tscn" id="4_6dhmy"]
 [ext_resource type="PackedScene" uid="uid://88kaltflhgi8" path="res://Scenes/Popups/story_create_popup.tscn" id="6_tf0hb"]
+[ext_resource type="PackedScene" uid="uid://biv8gp158if6n" path="res://Scenes/Popups/story_edit_popup.tscn" id="7_qglmm"]
 
 [node name="WritePage" type="CanvasLayer"]
 script = ExtResource("1_qglmm")
@@ -68,4 +69,7 @@ layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="StoryCreatePopup" parent="." instance=ExtResource("6_tf0hb")]
+visible = false
+
+[node name="StoryEditPopup" parent="." instance=ExtResource("7_qglmm")]
 visible = false
