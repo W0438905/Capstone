@@ -7,7 +7,8 @@
 script = ExtResource("2_ch8up")
 
 [node name="MenuButton" parent="HBoxContainer2" index="1"]
-size_flags_vertical = 4
 item_count = 4
 popup/item_3/text = "Export As"
 popup/item_3/id = 3
+
+[connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_button_pressed"]

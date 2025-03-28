@@ -1,6 +1,6 @@
 extends HBoxContainer
 
-class_name StoryBar
+class_name ChapterBar
 
 @onready var drag_label: Label = $HBoxContainer/DragLabel
 @onready var button: Button = $HBoxContainer/Button
@@ -8,7 +8,7 @@ class_name StoryBar
 
 const FONT_SIZE: int = 32
 
-var _story_info: Dictionary
+var _chapter_info: Dictionary
 
 
 func _ready() -> void:
@@ -23,14 +23,14 @@ func _process(delta: float) -> void:
 	pass
 
 
-# Called from write.gd
-func set_story_info(info: Dictionary) -> void:
+# Called from chapters.gd
+func set_chapter_info(info: Dictionary) -> void:
 	# Set data to script-wide
-	_story_info = info
-	#print(_story_info)
+	_chapter_info = info
+	#print(_chapter_info)
 	# Update bar with queried info
-	button.text = " " + _story_info["title"]
-	#button.text = info["created_at"]
+	button.text = " " + _chapter_info["title"]
+	#button.text = _chapter_info["created_at"]
 
 
 func _on_menu_item_selected(id: int) -> void:
@@ -38,14 +38,14 @@ func _on_menu_item_selected(id: int) -> void:
 		0:
 			print("Info")
 		1:
-			SignalManager.send_story_info.emit(_story_info)
-			SignalManager.story_edit_popup.emit(true)
+			print("Edit")
+			#SignalManager.send_story_info.emit(_story_info)
+			#SignalManager.story_edit_popup.emit(true)
 		2:
 			print("Delete")
-		3:
-			print("Export As")
 
 
 func _on_button_pressed() -> void:
-	SignalManager.send_story_info.emit(_story_info)
-	get_tree().change_scene_to_file("res://Scenes/Chapters/chapters.tscn")
+	pass
+	#SignalManager.send_story_info.emit(_story_info)
+	#get_tree().change_scene_to_file("res://Scenes/Chapters/chapters.tscn")

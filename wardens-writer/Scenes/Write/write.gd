@@ -40,11 +40,11 @@ func story_edit_popup(f: bool) -> void:
 
 func add_story_bars() -> void:
 	# Remove all bars in VBox to prepare for updating
-	for c in v_box_story.get_children():
-		c.queue_free()
+	for s in v_box_story.get_children():
+		s.queue_free()
 	
 	# Query database to get all stories
-	DatabaseManager.db.query("SELECT * FROM Stories ORDER BY updatedAt DESC")
+	DatabaseManager.db.query("SELECT * FROM Stories ORDER BY updatedAt DESC;")
 	var stories: Array[Dictionary] = DatabaseManager.db.query_result
 	
 	#print(stories)

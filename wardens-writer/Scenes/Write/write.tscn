@@ -5,8 +5,8 @@
 [ext_resource type="LabelSettings" uid="uid://bsebaymfx3jlw" path="res://Scenes/Main_Menu_Button/main_menu_button.tres" id="2_8ngx7"]
 [ext_resource type="PackedScene" uid="uid://dx5dwnnoc3oer" path="res://Scenes/Main_Menu_Button/main_menu_button.tscn" id="2_oe373"]
 [ext_resource type="PackedScene" uid="uid://bss5trf6qu1gd" path="res://Scenes/Story_Bars/create_story_bar.tscn" id="4_6dhmy"]
-[ext_resource type="PackedScene" uid="uid://88kaltflhgi8" path="res://Scenes/Popups/story_create_popup.tscn" id="6_tf0hb"]
-[ext_resource type="PackedScene" uid="uid://biv8gp158if6n" path="res://Scenes/Popups/story_edit_popup.tscn" id="7_qglmm"]
+[ext_resource type="PackedScene" uid="uid://88kaltflhgi8" path="res://Scenes/Story_Popups/story_create_popup.tscn" id="6_tf0hb"]
+[ext_resource type="PackedScene" uid="uid://biv8gp158if6n" path="res://Scenes/Story_Popups/story_edit_popup.tscn" id="7_qglmm"]
 
 [node name="WritePage" type="CanvasLayer"]
 script = ExtResource("1_qglmm")

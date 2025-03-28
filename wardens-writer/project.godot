@@ -19,6 +19,7 @@ config/icon="res://icon.png"
 
 DatabaseManager="*res://Autoloads/database_manager.gd"
 SignalManager="*res://Autoloads/signal_manager.gd"
+StoryManager="*res://Autoloads/story_manager.gd"
 
 [display]
 

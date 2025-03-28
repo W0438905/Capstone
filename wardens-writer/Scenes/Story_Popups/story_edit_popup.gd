@@ -11,13 +11,12 @@ var _title: String
 var _author: String
 var _desc: String
 
-# SET TEXT BOXES TO EXISTING QUERIED DATA
 
 func _ready() -> void:
 	top_label.add_theme_font_size_override("font_size", 32)
 	required_label.add_theme_font_size_override("font_size", 10)
 	required_label.add_theme_color_override("font_color", Color.DARK_RED) # set to ab000d later
-	SignalManager.send_story_info.connect(set_story_info)
+	SignalManager.story_edit_popup.connect(get_info_to_edit)
 
 
 func reset_text_boxes() -> void:
@@ -37,7 +36,7 @@ func _on_confirm_button_pressed() -> void:
 		var title: String = title_line.text
 		var author: String = author_line.text
 		var desc: String = description_box.text
-		var update_date: String = get_date()
+		var update_date: String = StoryManager.get_date()
 		
 		# Write update query
 		var query: String = """
@@ -54,6 +53,7 @@ func _on_confirm_button_pressed() -> void:
 		
 		# Emit signal that popup should close
 		SignalManager.story_edit_popup.emit(false)
+		
 		# Set all boxes and top label back to default
 		reset_text_boxes()
 
@@ -63,27 +63,15 @@ func _on_cancel_button_pressed() -> void:
 	reset_text_boxes()
 
 
-func get_date() -> String:
-	var month_arr: Array = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-	var dt = Time.get_datetime_dict_from_system()
-	
-	var month: String = month_arr[dt["month"]-1]
-	var day: int = dt["day"]
-	var year: int = dt["year"]
-	var hour: int = dt["hour"]
-	var min: int = dt["minute"]
-	var sec: int = dt["second"]
-	
-	var date_string = "%s-%02d-%04d %02d:%02d:%02d" % [month, day, year, hour, min, sec]
-	return date_string
-
-
-func set_story_info(info: Dictionary) -> void:
-	_story_id = info["story_id"]
-	_title = info["title"]
-	_author = info["author"]
-	_desc = info["description"]
-	
-	title_line.text = _title
-	author_line.text = _author
-	description_box.text = _desc
+func get_info_to_edit(f: bool) -> void:
+	if f == true:
+		var info: Dictionary = StoryManager.get_story_info()
+		
+		_story_id = info["story_id"]
+		_title = info["title"]
+		_author = info["author"]
+		_desc = info["description"]
+		
+		title_line.text = _title
+		author_line.text = _author
+		description_box.text = _desc

@@ -35,7 +35,7 @@ func _ready() -> void:
 			"createdAt" text NOT NULL,
 			"updatedAt" text NOT NULL,
 			PRIMARY KEY("chapterId" AUTOINCREMENT),
-			FOREIGN KEY("storyId") REFERENCES "Stories"("storyId") ON DELETE CASCADE
+			FOREIGN KEY("storyId") REFERENCES "Stories"("storyId") ON UPDATE CASCADE ON DELETE CASCADE
 		);
 	"""
 	
@@ -51,17 +51,14 @@ func _ready() -> void:
 			"createdAt" text NOT NULL,
 			"updatedAt" text NOT NULL,
 			PRIMARY KEY("noteId" AUTOINCREMENT),
-			FOREIGN KEY("chapterId") REFERENCES "Chapters"("chapterId") ON DELETE CASCADE,
-			FOREIGN KEY("storyId") REFERENCES "Stories"("storyId") ON DELETE CASCADE
+			FOREIGN KEY("chapterId") REFERENCES "Chapters"("chapterId") ON UPDATE CASCADE ON DELETE CASCADE,
+			FOREIGN KEY("storyId") REFERENCES "Stories"("storyId") ON UPDATE CASCADE ON DELETE CASCADE
 		);
 	"""
 	
 	# Drop each table (debug)
-	#var result: bool = db.query("SELECT * FROM Stories; SELECT * FROM Chapters; SELECT * FROM Notes;")
+	#var result: bool = db.query("DROP TABLE IF EXISTS Notes; DROP TABLE IF EXISTS Chapters; DROP TABLE IF EXISTS Stories;")
 	#if result:
-		#db.drop_table("Notes")
-		#db.drop_table("Chapters")
-		#db.drop_table("Stories")
 		#print("Dropped tables.")
 	#else:
 		#print("Tables not found.")

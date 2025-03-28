@@ -40,7 +40,7 @@ custom_minimum_size = Vector2(3, 0)
 layout_mode = 2
 
 [node name="MenuButton" type="MenuButton" parent="HBoxContainer2"]
-custom_minimum_size = Vector2(25, 0)
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_olj05")

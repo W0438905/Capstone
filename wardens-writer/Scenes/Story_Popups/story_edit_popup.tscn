@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://biv8gp158if6n"]
 
-[ext_resource type="PackedScene" uid="uid://88kaltflhgi8" path="res://Scenes/Popups/story_create_popup.tscn" id="1_cjt70"]
-[ext_resource type="Script" uid="uid://d0bpvtb3m3ono" path="res://Scenes/Popups/story_edit_popup.gd" id="2_aabxv"]
+[ext_resource type="PackedScene" uid="uid://88kaltflhgi8" path="res://Scenes/Story_Popups/story_create_popup.tscn" id="1_cjt70"]
+[ext_resource type="Script" uid="uid://d0bpvtb3m3ono" path="res://Scenes/Story_Popups/story_edit_popup.gd" id="2_aabxv"]
 
 [node name="StoryEditPopup" instance=ExtResource("1_cjt70")]
 script = ExtResource("2_aabxv")

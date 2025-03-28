@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=3 uid="uid://dviccqhrncgnw"]
+
+[ext_resource type="PackedScene" uid="uid://uqd1btdeeg5y" path="res://Scenes/Global_Background/global_background.tscn" id="1_2eyxk"]
+[ext_resource type="Script" uid="uid://bf05b3smkihfu" path="res://Scenes/Chapters/chapters.gd" id="1_bhv5b"]
+[ext_resource type="PackedScene" uid="uid://dx5dwnnoc3oer" path="res://Scenes/Main_Menu_Button/main_menu_button.tscn" id="2_v5jef"]
+[ext_resource type="LabelSettings" uid="uid://bsebaymfx3jlw" path="res://Scenes/Main_Menu_Button/main_menu_button.tres" id="3_bhv5b"]
+[ext_resource type="PackedScene" uid="uid://bmh62qrdivykb" path="res://Scenes/Chapter_Bars/create_chapter_bar.tscn" id="4_v5jef"]
+[ext_resource type="PackedScene" uid="uid://cfl1o7dnq588j" path="res://Scenes/Chapter_Popups/chapter_create_popup.tscn" id="7_xx4i6"]
+
+[node name="Chapters" type="CanvasLayer"]
+script = ExtResource("1_bhv5b")
+
+[node name="GlobalBackground" parent="." instance=ExtResource("1_2eyxk")]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 192
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 192
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Heading" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="MainMenuButton" parent="MarginContainer/VBoxContainer/Heading" instance=ExtResource("2_v5jef")]
+layout_mode = 2
+button_name = "write"
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Heading"]
+layout_mode = 2
+text = "Chapters page"
+label_settings = ExtResource("3_bhv5b")
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+
+[node name="CreateChapterBar" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("4_v5jef")]
+layout_mode = 2
+size_flags_horizontal = 1
+
+[node name="VBoxChapter" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ChapterCreatePopup" parent="." instance=ExtResource("7_xx4i6")]
+visible = false
