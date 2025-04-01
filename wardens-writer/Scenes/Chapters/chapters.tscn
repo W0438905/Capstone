@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bmh62qrdivykb" path="res://Scenes/Chapter_Bars/create_chapter_bar.tscn" id="4_v5jef"]
 [ext_resource type="PackedScene" uid="uid://cfl1o7dnq588j" path="res://Scenes/Chapter_Popups/chapter_create_popup.tscn" id="7_xx4i6"]
 
-[node name="Chapters" type="CanvasLayer"]
+[node name="ChaptersPage" type="CanvasLayer"]
 script = ExtResource("1_bhv5b")
 
 [node name="GlobalBackground" parent="." instance=ExtResource("1_2eyxk")]

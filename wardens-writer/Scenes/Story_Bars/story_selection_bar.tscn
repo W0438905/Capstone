@@ -11,4 +11,4 @@ item_count = 4
 popup/item_3/text = "Export As"
 popup/item_3/id = 3
 
-[connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/BarButton" to="." method="_on_bar_button_pressed"]

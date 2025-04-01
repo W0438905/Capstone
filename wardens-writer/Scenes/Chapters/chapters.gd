@@ -5,7 +5,7 @@ extends CanvasLayer
 
 const CHAPTER_SELECTION_BAR = preload("res://Scenes/Chapter_Bars/chapter_selection_bar.tscn")
 
-var _popup_flag: bool = false
+var popup_flag: bool = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -22,8 +22,8 @@ func _process(delta: float) -> void:
 
 
 func chapter_create_popup(f: bool) -> void:
-	_popup_flag = f
-	if _popup_flag:
+	popup_flag = f
+	if popup_flag:
 		c_create_popup.visible = true
 	else:
 		c_create_popup.visible = false

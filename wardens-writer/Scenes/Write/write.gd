@@ -6,7 +6,7 @@ extends CanvasLayer
 
 const STORY_SELECTION_BAR = preload("res://Scenes/Story_Bars/story_selection_bar.tscn")
 
-var _popup_flag: bool = false
+var popup_flag: bool = false
 
 
 func _ready() -> void:
@@ -21,8 +21,8 @@ func _process(delta: float) -> void:
 
 
 func story_create_popup(f: bool) -> void:
-	_popup_flag = f
-	if _popup_flag:
+	popup_flag = f
+	if popup_flag:
 		s_create_popup.visible = true
 	else:
 		s_create_popup.visible = false
@@ -30,8 +30,8 @@ func story_create_popup(f: bool) -> void:
 
 
 func story_edit_popup(f: bool) -> void:
-	_popup_flag = f
-	if _popup_flag:
+	popup_flag = f
+	if popup_flag:
 		s_edit_popup.visible = true
 	else:
 		s_edit_popup.visible = false

@@ -5,3 +5,5 @@
 
 [node name="ChapterSelectionBar" instance=ExtResource("1_kysn7")]
 script = ExtResource("2_ljq2o")
+
+[connection signal="pressed" from="HBoxContainer/BarButton" to="." method="_on_bar_button_pressed"]

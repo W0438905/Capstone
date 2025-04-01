@@ -3,17 +3,17 @@ extends HBoxContainer
 class_name StoryBar
 
 @onready var drag_label: Label = $HBoxContainer/DragLabel
-@onready var button: Button = $HBoxContainer/Button
+@onready var bar_button: Button = $HBoxContainer/BarButton
 @onready var menu_button: MenuButton = $HBoxContainer2/MenuButton
 
 const FONT_SIZE: int = 32
 
-var _story_info: Dictionary
+var story_info: Dictionary
 
 
 func _ready() -> void:
 	drag_label.add_theme_font_size_override("font_size", FONT_SIZE)
-	button.add_theme_font_size_override("font_size", FONT_SIZE)
+	bar_button.add_theme_font_size_override("font_size", FONT_SIZE)
 	
 	# Retrieves the ids from the MenuButton items and sends it to _on_menu_item_selected func
 	menu_button.get_popup().id_pressed.connect(_on_menu_item_selected)
@@ -26,10 +26,10 @@ func _process(delta: float) -> void:
 # Called from write.gd
 func set_story_info(info: Dictionary) -> void:
 	# Set data to script-wide
-	_story_info = info
+	story_info = info
 	#print(_story_info)
 	# Update bar with queried info
-	button.text = " " + _story_info["title"]
+	bar_button.text = " " + story_info["title"]
 	#button.text = info["created_at"]
 
 
@@ -38,7 +38,7 @@ func _on_menu_item_selected(id: int) -> void:
 		0:
 			print("Info")
 		1:
-			SignalManager.send_story_info.emit(_story_info)
+			StoryManager.set_story_info(story_info)
 			SignalManager.story_edit_popup.emit(true)
 		2:
 			print("Delete")
@@ -46,6 +46,7 @@ func _on_menu_item_selected(id: int) -> void:
 			print("Export As")
 
 
-func _on_button_pressed() -> void:
-	SignalManager.send_story_info.emit(_story_info)
+# Main story bar button
+func _on_bar_button_pressed() -> void:
+	StoryManager.set_story_info(story_info)
 	get_tree().change_scene_to_file("res://Scenes/Chapters/chapters.tscn")

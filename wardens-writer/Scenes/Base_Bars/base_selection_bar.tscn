@@ -23,7 +23,7 @@ text = "="
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="HBoxContainer"]
+[node name="BarButton" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = " BeansBeansBeans "
