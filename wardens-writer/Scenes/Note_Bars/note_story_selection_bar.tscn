@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://v1thqg51772o"]
+
+[ext_resource type="PackedScene" uid="uid://dgswon5reow2g" path="res://Scenes/Base_Bars/base_selection_bar.tscn" id="1_i1ves"]
+[ext_resource type="Script" uid="uid://bsot5xeyd4aoa" path="res://Scenes/Note_Bars/note_story_selection_bar.gd" id="2_hk5o8"]
+
+[node name="NoteStorySelectionBar" instance=ExtResource("1_i1ves")]
+script = ExtResource("2_hk5o8")
+
+[node name="MenuButton" parent="HBoxContainer2" index="1"]
+visible = false
+
+[connection signal="pressed" from="HBoxContainer/BarButton" to="." method="_on_bar_button_pressed"]

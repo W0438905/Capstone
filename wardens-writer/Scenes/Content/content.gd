@@ -27,6 +27,11 @@ func chapter_or_note() -> void:
 		id = info["chapter_id"]
 		table = "CHAPTERS"
 		pk = "chapterId"
+		
+		# Do not move these, they add the chapter info to the page
+		title_line.text = info["title"]
+		content_edit.text = info["content"]
+		
 		#print("chapter info in content:")
 		#print(id)
 		
@@ -35,6 +40,11 @@ func chapter_or_note() -> void:
 		id = info["note_id"]
 		table = "NOTES"
 		pk = "noteId"
+		
+		# Do not move these, they add the note info to the page
+		title_line.text = info["title"]
+		content_edit.text = info["content"]
+		
 		#print("note info in content:")
 		#print(id)
 		
@@ -48,8 +58,6 @@ func _on_back_button_pressed() -> void:
 
 func _on_save_button_pressed() -> void:
 	story_id = info["story_id"]
-	title_line.text = info["title"]
-	content_edit.text = info["content"]
 	
 	var title: String = title_line.text
 	var content: String = content_edit.text
