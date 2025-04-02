@@ -1,8 +1,8 @@
 extends Control
 
-@onready var top_label: Label = $ColorRect/MarginContainer/VBoxContainer/TopLabel
-@onready var required_label: Label = $ColorRect/MarginContainer/VBoxContainer/RequiredLabel
-@onready var title_line: LineEdit = $ColorRect/MarginContainer/VBoxContainer/Title/TitleLine
+@onready var top_label: Label = $GlobalBackground/MarginContainer/VBoxContainer/TopLabel
+@onready var required_label: Label = $GlobalBackground/MarginContainer/VBoxContainer/RequiredLabel
+@onready var title_line: LineEdit = $GlobalBackground/MarginContainer/VBoxContainer/Title/TitleLine
 
 
 func _ready() -> void:
@@ -11,7 +11,7 @@ func _ready() -> void:
 	required_label.add_theme_color_override("font_color", Color.DARK_RED) # set to ab000d later
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 

@@ -1,6 +1,8 @@
 extends CanvasLayer
 
 @onready var v_box_story: VBoxContainer = $MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxStory
+@onready var back_button: Button = $MarginContainer/VBoxContainer/Heading/BackButton
+@onready var page_label: Label = $MarginContainer/VBoxContainer/Heading/PageLabel
 
 const NOTE_STORY_SELECTION_BAR = preload("res://Scenes/Note_Bars/note_story_selection_bar.tscn")
 
@@ -8,10 +10,12 @@ var popup_flag: bool = false
 
 
 func _ready() -> void:
+	page_label.add_theme_font_size_override("font_size", 48)
+	back_button.add_theme_font_size_override("font_size", 48)
 	add_story_bars()
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 	# not needed for signals, might not be needed at all
 
@@ -42,3 +46,7 @@ func add_story_bars() -> void:
 			"created_at": story["createdAt"],
 			"updated_at": story["updatedAt"]
 		})
+
+
+func _on_back_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/Main_Menu/main_menu.tscn")

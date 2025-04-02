@@ -1,9 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://b8yjhxo37bed3"]
+[gd_scene load_steps=5 format=3 uid="uid://b8yjhxo37bed3"]
 
 [ext_resource type="Script" uid="uid://bhctvodkqn3fi" path="res://Scenes/Note_Select/note_select.gd" id="1_70j3v"]
 [ext_resource type="PackedScene" uid="uid://uqd1btdeeg5y" path="res://Scenes/Global_Background/global_background.tscn" id="1_x4q8u"]
-[ext_resource type="PackedScene" uid="uid://dx5dwnnoc3oer" path="res://Scenes/Main_Menu_Button/main_menu_button.tscn" id="2_v2kad"]
-[ext_resource type="LabelSettings" uid="uid://bsebaymfx3jlw" path="res://Scenes/Main_Menu_Button/main_menu_button.tres" id="3_v2kad"]
 [ext_resource type="PackedScene" uid="uid://bxstr13pjt4sv" path="res://Scenes/Note_Bars/create_note_bar.tscn" id="5_k3k1o"]
 [ext_resource type="PackedScene" uid="uid://b2lv37i8i5nmx" path="res://Scenes/Note_Popups/note_create_popup.tscn" id="6_rpo7h"]
 
@@ -19,9 +17,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 192
-theme_override_constants/margin_top = 16
+theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 192
-theme_override_constants/margin_bottom = 16
+theme_override_constants/margin_bottom = 32
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -29,15 +27,31 @@ theme_override_constants/separation = 5
 
 [node name="Heading" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1
 
-[node name="MainMenuButton" parent="MarginContainer/VBoxContainer/Heading" instance=ExtResource("2_v2kad")]
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/Heading"]
+custom_minimum_size = Vector2(80, 50)
 layout_mode = 2
-button_name = "notes"
+text = "<="
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Heading"]
+[node name="PageLabel" type="Label" parent="MarginContainer/VBoxContainer/Heading"]
 layout_mode = 2
-text = "Note Select page"
-label_settings = ExtResource("3_v2kad")
+text = "Notes"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ToChaptersButton" type="Button" parent="MarginContainer/VBoxContainer/Heading"]
+custom_minimum_size = Vector2(80, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Go To
+Chapters"
+
+[node name="Spacer2" type="Control" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -62,3 +76,6 @@ layout_mode = 2
 
 [node name="NoteCreatePopup" parent="." instance=ExtResource("6_rpo7h")]
 visible = false
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Heading/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Heading/ToChaptersButton" to="." method="_on_to_chapters_button_pressed"]

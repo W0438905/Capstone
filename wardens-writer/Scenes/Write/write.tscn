@@ -1,9 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bc2yyhh6sft5s"]
+[gd_scene load_steps=6 format=3 uid="uid://bc2yyhh6sft5s"]
 
 [ext_resource type="PackedScene" uid="uid://uqd1btdeeg5y" path="res://Scenes/Global_Background/global_background.tscn" id="1_h536d"]
 [ext_resource type="Script" uid="uid://c0qdl57ej6uaq" path="res://Scenes/Write/write.gd" id="1_qglmm"]
-[ext_resource type="LabelSettings" uid="uid://bsebaymfx3jlw" path="res://Scenes/Main_Menu_Button/main_menu_button.tres" id="2_8ngx7"]
-[ext_resource type="PackedScene" uid="uid://dx5dwnnoc3oer" path="res://Scenes/Main_Menu_Button/main_menu_button.tscn" id="2_oe373"]
 [ext_resource type="PackedScene" uid="uid://bss5trf6qu1gd" path="res://Scenes/Story_Bars/create_story_bar.tscn" id="4_6dhmy"]
 [ext_resource type="PackedScene" uid="uid://88kaltflhgi8" path="res://Scenes/Story_Popups/story_create_popup.tscn" id="6_tf0hb"]
 [ext_resource type="PackedScene" uid="uid://biv8gp158if6n" path="res://Scenes/Story_Popups/story_edit_popup.tscn" id="7_qglmm"]
@@ -20,9 +18,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 192
-theme_override_constants/margin_top = 16
+theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 192
-theme_override_constants/margin_bottom = 16
+theme_override_constants/margin_bottom = 32
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -31,16 +29,24 @@ theme_override_constants/separation = 5
 [node name="Heading" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
+theme_override_constants/separation = 150
+alignment = 1
 
-[node name="MainMenuButton" parent="MarginContainer/VBoxContainer/Heading" instance=ExtResource("2_oe373")]
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/Heading"]
+custom_minimum_size = Vector2(80, 50)
 layout_mode = 2
-button_name = "main_menu"
+text = "<="
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Heading"]
+[node name="PageLabel" type="Label" parent="MarginContainer/VBoxContainer/Heading"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Write page"
-label_settings = ExtResource("2_8ngx7")
+text = "Stories"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer2" type="Control" parent="MarginContainer/VBoxContainer/Heading"]
+custom_minimum_size = Vector2(80, 50)
+layout_mode = 2
 
 [node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
@@ -73,3 +79,5 @@ visible = false
 
 [node name="StoryEditPopup" parent="." instance=ExtResource("7_qglmm")]
 visible = false
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Heading/BackButton" to="." method="_on_back_button_pressed"]

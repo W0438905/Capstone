@@ -15,7 +15,7 @@ func _ready() -> void:
 	bar_button.add_theme_font_size_override("font_size", FONT_SIZE)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 

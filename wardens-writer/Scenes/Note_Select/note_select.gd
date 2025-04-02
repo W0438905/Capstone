@@ -2,6 +2,8 @@ extends CanvasLayer
 
 @onready var v_box_note: VBoxContainer = $MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxNote
 @onready var n_create_popup: Control = $NoteCreatePopup
+@onready var back_button: Button = $MarginContainer/VBoxContainer/Heading/BackButton
+@onready var page_label: Label = $MarginContainer/VBoxContainer/Heading/PageLabel
 
 const NOTE_SELECTION_BAR = preload("res://Scenes/Note_Bars/note_selection_bar.tscn")
 
@@ -10,6 +12,8 @@ var popup_flag: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	page_label.add_theme_font_size_override("font_size", 48)
+	back_button.add_theme_font_size_override("font_size", 48)
 	SignalManager.note_create_popup.connect(note_create_popup)
 	add_chapter_bars()
 	#print("note:")
@@ -17,7 +21,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 
@@ -71,3 +75,11 @@ func add_chapter_bars() -> void:
 			"created_at": note["createdAt"],
 			"updated_at": note["updatedAt"]
 		})
+
+
+func _on_to_chapters_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/Chapters/chapters.tscn")
+
+
+func _on_back_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/Notes/notes.tscn")

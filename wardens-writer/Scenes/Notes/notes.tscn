@@ -1,9 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://30wy0nb4fybi"]
+[gd_scene load_steps=3 format=3 uid="uid://30wy0nb4fybi"]
 
 [ext_resource type="PackedScene" uid="uid://uqd1btdeeg5y" path="res://Scenes/Global_Background/global_background.tscn" id="1_5ole5"]
 [ext_resource type="Script" uid="uid://bdw5aawprxors" path="res://Scenes/Notes/notes.gd" id="1_gikk2"]
-[ext_resource type="LabelSettings" uid="uid://bsebaymfx3jlw" path="res://Scenes/Main_Menu_Button/main_menu_button.tres" id="2_gikk2"]
-[ext_resource type="PackedScene" uid="uid://dx5dwnnoc3oer" path="res://Scenes/Main_Menu_Button/main_menu_button.tscn" id="3_6abui"]
 
 [node name="NotesPage" type="CanvasLayer"]
 script = ExtResource("1_gikk2")
@@ -17,9 +15,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 192
-theme_override_constants/margin_top = 16
+theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 192
-theme_override_constants/margin_bottom = 16
+theme_override_constants/margin_bottom = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -28,16 +26,22 @@ theme_override_constants/separation = 5
 [node name="Heading" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
+theme_override_constants/separation = 100
+alignment = 1
 
-[node name="MainMenuButton" parent="MarginContainer/VBoxContainer/Heading" instance=ExtResource("3_6abui")]
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/Heading"]
+custom_minimum_size = Vector2(80, 50)
 layout_mode = 2
-button_name = "main_menu"
+text = "<="
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Heading"]
+[node name="PageLabel" type="Label" parent="MarginContainer/VBoxContainer/Heading"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Notes page"
-label_settings = ExtResource("2_gikk2")
+text = "Story Select"
+
+[node name="Spacer2" type="Control" parent="MarginContainer/VBoxContainer/Heading"]
+custom_minimum_size = Vector2(80, 50)
+layout_mode = 2
 
 [node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
@@ -53,10 +57,12 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 3)
+custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 
 [node name="VBoxStory" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 10
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Heading/BackButton" to="." method="_on_back_button_pressed"]

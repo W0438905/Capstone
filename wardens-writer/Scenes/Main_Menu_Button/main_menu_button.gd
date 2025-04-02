@@ -37,7 +37,7 @@ func _ready() -> void:
 			name_label.add_theme_font_size_override("font_size", 24)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 
@@ -49,8 +49,7 @@ func _on_pressed() -> void:
 	elif button_name == "main_menu":
 		# .capitalize() turns main_menu into Main Menu, which is not Main_Menu like I need it to be.
 		# This is the fix
-		var button_route: String = "res://Scenes/Main_Menu/main_menu.tscn"
-		get_tree().change_scene_to_file(button_route)
+		get_tree().change_scene_to_file("res://Scenes/Main_Menu/main_menu.tscn")
 	else:
 		var button_route: String = "res://Scenes/" + button_name.capitalize() + "/" + button_name + ".tscn"
 		get_tree().change_scene_to_file(button_route)

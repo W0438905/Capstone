@@ -1,10 +1,11 @@
 extends Node
 
-@onready var top_label: Label = $ColorRect/MarginContainer/VBoxContainer/TopLabel
-@onready var required_label: Label = $ColorRect/MarginContainer/VBoxContainer/RequiredLabel
-@onready var title_line: LineEdit = $ColorRect/MarginContainer/VBoxContainer/Title/TitleLine
-@onready var author_line: LineEdit = $ColorRect/MarginContainer/VBoxContainer/Author/AuthorLine
-@onready var description_box: TextEdit = $ColorRect/MarginContainer/VBoxContainer/Description/MarginContainer/DescriptionBox
+@onready var top_label: Label = $GlobalBackground/MarginContainer/VBoxContainer/TopLabel
+@onready var required_label: Label = $GlobalBackground/MarginContainer/VBoxContainer/RequiredLabel
+@onready var title_line: LineEdit = $GlobalBackground/MarginContainer/VBoxContainer/Title/TitleLine
+@onready var author_line: LineEdit = $GlobalBackground/MarginContainer/VBoxContainer/Author/AuthorLine
+@onready var description_box: TextEdit = $GlobalBackground/MarginContainer/VBoxContainer/Description/MarginContainer/DescriptionBox
+@onready var button_spacer: Control = $GlobalBackground/MarginContainer/VBoxContainer/ButtonSpacer
 
 var _story_id: int
 var _title: String
@@ -25,12 +26,14 @@ func reset_text_boxes() -> void:
 	description_box.text = ""
 	required_label.add_theme_font_size_override("font_size", 10)
 	required_label.text = "*Required"
+	button_spacer.visible = true
 
 
 func _on_confirm_button_pressed() -> void:
 	if title_line.text.is_empty():
 		required_label.add_theme_font_size_override("font_size", 16)
 		required_label.text = "*Story Must Have Title"
+		button_spacer.visible = false
 	else:
 		# Take info in bars and time snippet and send it to database
 		var title: String = title_line.text

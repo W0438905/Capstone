@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://cldijs2xqwyow"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://cldijs2xqwyow"]
 
 [ext_resource type="FontFile" uid="uid://c7h4qns2dhj4k" path="res://Assets/Merriweather-Regular.ttf" id="1_wk335"]
 
@@ -62,6 +62,15 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 expand_margin_top = 1.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_81p6a"]
+draw_center = false
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color(0.109804, 0.560784, 1, 1)
+shadow_size = 4
+
 [resource]
 Button/colors/font_color = Color(0, 0, 0, 1)
 Button/colors/font_focus_color = Color(0, 0, 0, 1)
@@ -77,3 +86,4 @@ Label/colors/font_color = Color(0, 0, 0, 1)
 Label/constants/line_spacing = -3
 Label/fonts/font = ExtResource("1_wk335")
 MenuButton/styles/normal = SubResource("StyleBoxFlat_k5ui4")
+Panel/styles/panel = SubResource("StyleBoxFlat_81p6a")

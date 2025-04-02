@@ -1,9 +1,12 @@
 extends CanvasLayer
 
+@onready var back_button: Button = $MarginContainer/VBoxContainer/TopBar/BackButton
+@onready var save_button: Button = $MarginContainer/VBoxContainer/TopBar/SaveButton
+@onready var required_label: Label = $MarginContainer/VBoxContainer/TopBar/RequiredLabel
 @onready var title_line: LineEdit = $MarginContainer/VBoxContainer/TopBar/TitleLine
+@onready var note_list_button: Button = $MarginContainer/VBoxContainer/TopBar/NoteListButton
 @onready var content_edit: TextEdit = $MarginContainer/VBoxContainer/MarginContainer/ContentEdit
 @onready var autosave_timer: Timer = $AutosaveTimer
-@onready var required_label: Label = $MarginContainer/VBoxContainer/TopBar/RequiredLabel
 
 var cn: String
 var info: Dictionary
@@ -15,12 +18,16 @@ var story_id: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	note_list_button.add_theme_font_size_override("font_size", 32)
+	back_button.add_theme_font_size_override("font_size", 24)
+	save_button.add_theme_font_size_override("font_size", 20)
+	required_label.add_theme_font_size_override("font_size", 16)
 	required_label.add_theme_color_override("font_color", Color.DARK_RED) # set to ab000d later
 	chapter_or_note()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 

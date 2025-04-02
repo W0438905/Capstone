@@ -6,5 +6,5 @@
 [node name="StoryEditPopup" instance=ExtResource("1_cjt70")]
 script = ExtResource("2_aabxv")
 
-[node name="TopLabel" parent="ColorRect/MarginContainer/VBoxContainer" index="0"]
+[node name="TopLabel" parent="GlobalBackground/MarginContainer/VBoxContainer" index="1"]
 text = "Edit Story"
