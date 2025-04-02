@@ -1,6 +1,6 @@
 extends HBoxContainer
 
-class_name ChapterBar
+class_name NoteBar
 
 @onready var drag_label: Label = $HBoxContainer/DragLabel
 @onready var bar_button: Button = $HBoxContainer/BarButton
@@ -8,7 +8,7 @@ class_name ChapterBar
 
 const FONT_SIZE: int = 32
 
-var chapter_info: Dictionary
+var note_info: Dictionary
 
 
 func _ready() -> void:
@@ -19,18 +19,19 @@ func _ready() -> void:
 	menu_button.get_popup().id_pressed.connect(_on_menu_item_selected)
 
 
+# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
 
-# Called from chapters.gd
-func set_chapter_info(info: Dictionary) -> void:
+# Called from note_select.gd
+func set_note_info(info: Dictionary) -> void:
 	# Set data to script-wide
-	chapter_info = info
-	#print(chapter_info)
+	note_info = info
+	#print(note_info)
 	# Update bar with queried info
-	bar_button.text = " " + chapter_info["title"]
-	#button.text = chapter_info["created_at"]
+	bar_button.text = " " + note_info["title"]
+	#button.text = note_info["created_at"]
 
 
 func _on_menu_item_selected(id: int) -> void:
@@ -39,13 +40,13 @@ func _on_menu_item_selected(id: int) -> void:
 			print("Info")
 		1:
 			print("Edit")
-			#StoryManager.set_chapter_info(chapter_info)
-			#SignalManager.chapter_edit_popup.emit(true)
+			#StoryManager.set_note_info(chapter_info)
+			#SignalManager.note_edit_popup.emit(true)
 		2:
 			print("Delete")
 
 
 func _on_bar_button_pressed() -> void:
-	StoryManager.set_chapter_info(chapter_info)
-	StoryManager.set_flip_flop("chapter") # Sets content page to take chapters
+	StoryManager.set_note_info(note_info)
+	StoryManager.set_flip_flop("note") # Sets content page to take notes
 	get_tree().change_scene_to_file("res://Scenes/Content/content.tscn")

@@ -34,6 +34,11 @@ text = " <= "
 layout_mode = 2
 text = " Save "
 
+[node name="RequiredLabel" type="Label" parent="MarginContainer/VBoxContainer/TopBar"]
+visible = false
+layout_mode = 2
+text = "Title Is Required."
+
 [node name="TitleLine" type="LineEdit" parent="MarginContainer/VBoxContainer/TopBar"]
 layout_mode = 2
 size_flags_horizontal = 3

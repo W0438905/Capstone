@@ -33,6 +33,10 @@ window/stretch/aspect="expand"
 
 enabled=PackedStringArray("res://addons/godot-sqlite/plugin.cfg", "res://addons/proton_control_animation/plugin.cfg")
 
+[gui]
+
+theme/custom="uid://cldijs2xqwyow"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

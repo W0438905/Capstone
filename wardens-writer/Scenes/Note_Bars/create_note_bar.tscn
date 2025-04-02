@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxstr13pjt4sv"]
+
+[ext_resource type="PackedScene" uid="uid://obl1xjjcmfrq" path="res://Scenes/Base_Bars/base_create_bar.tscn" id="1_sq4hu"]
+[ext_resource type="Script" uid="uid://drmxv4s6jahdc" path="res://Scenes/Note_Bars/create_note_bar.gd" id="2_54fs2"]
+
+[node name="CreateNoteBar" instance=ExtResource("1_sq4hu")]
+script = ExtResource("2_54fs2")
+
+[node name="CreateButton" parent="HBoxContainer" index="1"]
+text = " Add New Note"
+
+[connection signal="pressed" from="HBoxContainer/CreateButton" to="." method="_on_create_button_pressed"]

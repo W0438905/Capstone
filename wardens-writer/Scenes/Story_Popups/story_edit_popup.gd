@@ -41,15 +41,16 @@ func _on_confirm_button_pressed() -> void:
 		# Write update query
 		var query: String = """
 			UPDATE Stories 
-			SET title = '%s',
-				author = '%s',
-				description = '%s',
-				updatedAt = '%s'
-			WHERE storyId = %d
-		""" % [title, author, desc, update_date, _story_id]
+			SET title = ?,
+				author = ?,
+				description = ?,
+				updatedAt = ?
+			WHERE storyId = ?;
+		"""
+		var params: Array = [title, author, desc, update_date, _story_id]
 		
 		# Update database
-		DatabaseManager.db.query(query)
+		DatabaseManager.db.query_with_bindings(query, params)
 		
 		# Emit signal that popup should close
 		SignalManager.story_edit_popup.emit(false)

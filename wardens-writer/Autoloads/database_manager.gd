@@ -17,8 +17,8 @@ func _ready() -> void:
 			"title" text NOT NULL,
 			"author" text,
 			"description" text,
-			"createdAt" text NOT NULL,
-			"updatedAt" text NOT NULL,
+			"createdAt" text NOT NULL, --yyyy mm dd hh mm ss
+			"updatedAt" text NOT NULL, --yyyy mm dd hh mm ss
 			PRIMARY KEY("storyId" AUTOINCREMENT)
 		);
 	"""
@@ -32,8 +32,8 @@ func _ready() -> void:
 			"description" text,
 			"content" text,
 			"chapterOrder" INTEGER NOT NULL,
-			"createdAt" text NOT NULL,
-			"updatedAt" text NOT NULL,
+			"createdAt" text NOT NULL, --yyyy mm dd hh mm ss
+			"updatedAt" text NOT NULL, --yyyy mm dd hh mm ss
 			PRIMARY KEY("chapterId" AUTOINCREMENT),
 			FOREIGN KEY("storyId") REFERENCES "Stories"("storyId") ON UPDATE CASCADE ON DELETE CASCADE
 		);
@@ -48,8 +48,8 @@ func _ready() -> void:
 			"noteType" INTEGER NOT NULL,
 			"title" text NOT NULL,
 			"content" text,
-			"createdAt" text NOT NULL,
-			"updatedAt" text NOT NULL,
+			"createdAt" text NOT NULL, --yyyy mm dd hh mm ss
+			"updatedAt" text NOT NULL, --yyyy mm dd hh mm ss
 			PRIMARY KEY("noteId" AUTOINCREMENT),
 			FOREIGN KEY("chapterId") REFERENCES "Chapters"("chapterId") ON UPDATE CASCADE ON DELETE CASCADE,
 			FOREIGN KEY("storyId") REFERENCES "Stories"("storyId") ON UPDATE CASCADE ON DELETE CASCADE
@@ -62,7 +62,7 @@ func _ready() -> void:
 		#print("Dropped tables.")
 	#else:
 		#print("Tables not found.")
-	# #######################
+	 #######################
 	
 	# Add each table to the database
 	db.query(story_table)

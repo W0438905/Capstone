@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bl6s1fk2umw8s"]
+
+[ext_resource type="PackedScene" uid="uid://dgswon5reow2g" path="res://Scenes/Base_Bars/base_selection_bar.tscn" id="1_ykn2n"]
+[ext_resource type="Script" uid="uid://wdaxel7alf3k" path="res://Scenes/Note_Bars/note_selection_bar.gd" id="2_wjyhw"]
+
+[node name="NoteSelectionBar" instance=ExtResource("1_ykn2n")]
+script = ExtResource("2_wjyhw")
+
+[connection signal="pressed" from="HBoxContainer/BarButton" to="." method="_on_bar_button_pressed"]

@@ -60,15 +60,6 @@ func add_chapter_bars() -> void:
 		
 		#print(chapter)
 		
-		# chapterid
-		# storyid
-		# title        <input *required
-		# description  <input
-		# content
-		# chapterOrder <done automatically
-		# createdat
-		# updatedat
-		
 		# Send chapter info to chapter_selection_bar
 		new_bar.set_chapter_info({
 			"chapter_id": chapter["chapterId"],

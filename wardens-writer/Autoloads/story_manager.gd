@@ -50,21 +50,55 @@ func get_note_info() -> Dictionary:
 
 
 func get_date() -> String:
-	var month_arr: Array = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+	# Get the system's date
 	var dt = Time.get_datetime_dict_from_system()
 	
-	var month: String = month_arr[dt["month"]-1]
-	var day: int = dt["day"]
-	var year: int = dt["year"]
-	var hour: int = dt["hour"]
-	var min: int = dt["minute"]
-	var sec: int = dt["second"]
+	# Format it as a string and send it off
+	return "%04d %02d %02d %02d %02d %02d" % [
+		dt["year"], dt["month"], dt["day"], dt["hour"], dt["minute"], dt["second"]
+	]
+
+
+func display_date(date: String) -> String:
+	# Break date string into array at each space
+	var d: Array = date.split(" ")
 	
-	var date_string = "%s-%02d-%04d %02d:%02d:%02d" % [month, day, year, hour, min, sec]
-	return date_string
+	# Grab each part of the array and write to vars
+	var year: String = d[0]
+	var month: String = d[1]
+	var day: String = d[2]
+	var hour: int = int(d[3]) # Need string as int for hour math
+	var minute: String = d[4]
+	# Though they are necessary for db sorting, I've chosen to not display seconds
+	
+	# Make array of month names
+	var month_names: Array = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+					"Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+	# Get the index of the month array using the month number - 1
+	var month_name: String = month_names[int(month) - 1]
+	
+	# If the hour is less than 12, it is AM. Otherwise the time is PM
+	var am_pm: String = "AM" if hour < 12 else "PM"
+	
+	# Get the remainder of hour / 12 (ex: 17 % 12 = 5)
+	var twelve_hour: int = hour % 12
+	# If hour was 12, then remainder would be 0. This catches that
+	if twelve_hour == 0:
+		twelve_hour = 12
+	
+	# Put the string together and return it do be displayed
+	return "%s %s, %s at %d:%s %s" % [
+		month_name,
+		day,						# Day
+		year,						# Year
+		twelve_hour,				# Hour
+		minute,						# Minute
+		am_pm						# AM or PM
+	]
 
 
 func set_flip_flop(cn: String) -> void:
+	# Sets whether the Content page should handle chapters or notes
 	flip_flop = cn
 
 

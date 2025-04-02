@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 	pass
 
 
-# Called from write.gd
+# Called from notes.gd
 func set_story_info(info: Dictionary) -> void:
 	# Set data to script-wide
 	story_info = info

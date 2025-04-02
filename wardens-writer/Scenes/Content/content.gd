@@ -3,15 +3,19 @@ extends CanvasLayer
 @onready var title_line: LineEdit = $MarginContainer/VBoxContainer/TopBar/TitleLine
 @onready var content_edit: TextEdit = $MarginContainer/VBoxContainer/MarginContainer/ContentEdit
 @onready var autosave_timer: Timer = $AutosaveTimer
+@onready var required_label: Label = $MarginContainer/VBoxContainer/TopBar/RequiredLabel
 
+var cn: String
 var info: Dictionary
 var id: int
 var table: String
 var pk: String
 var story_id: int
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	required_label.add_theme_color_override("font_color", Color.DARK_RED) # set to ab000d later
 	chapter_or_note()
 
 
@@ -21,7 +25,7 @@ func _process(delta: float) -> void:
 
 
 func chapter_or_note() -> void:
-	var cn: String = StoryManager.get_flip_flop()
+	cn = StoryManager.get_flip_flop()
 	if cn == "chapter":
 		info = StoryManager.get_chapter_info()
 		id = info["chapter_id"]
@@ -53,10 +57,20 @@ func chapter_or_note() -> void:
 
 
 func _on_back_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/Chapters/chapters.tscn")
+	if cn == "chapter":
+		get_tree().change_scene_to_file("res://Scenes/Chapters/chapters.tscn")
+	elif cn == "note":
+		get_tree().change_scene_to_file("res://Scenes/Note_Select/note_select.tscn")
+	else:
+		get_tree().change_scene_to_file("res://Scenes/Main_Menu/main_menu.tscn")
 
 
 func _on_save_button_pressed() -> void:
+	if title_line.text.is_empty():
+		required_label.visible = true
+		return
+	required_label.visible = false
+	
 	story_id = info["story_id"]
 	
 	var title: String = title_line.text
