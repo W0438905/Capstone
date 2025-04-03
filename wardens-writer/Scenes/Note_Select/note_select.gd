@@ -4,6 +4,10 @@ extends CanvasLayer
 @onready var n_create_popup: Control = $NoteCreatePopup
 @onready var back_button: Button = $MarginContainer/VBoxContainer/Heading/BackButton
 @onready var page_label: Label = $MarginContainer/VBoxContainer/Heading/PageLabel
+@onready var del_popup: Control = $DeletePopup
+
+
+@onready var wip_popup: Control = $WIPPopup
 
 const NOTE_SELECTION_BAR = preload("res://Scenes/Note_Bars/note_selection_bar.tscn")
 
@@ -15,9 +19,21 @@ func _ready() -> void:
 	page_label.add_theme_font_size_override("font_size", 48)
 	back_button.add_theme_font_size_override("font_size", 48)
 	SignalManager.note_create_popup.connect(note_create_popup)
-	add_chapter_bars()
+	SignalManager.delete_popup.connect(delete_popup)
+	
+	SignalManager.wip_popup.connect(wip)
+	
+	add_note_bars()
 	#print("note:")
 	#print(StoryManager.get_note_info())
+
+
+func wip(f: bool) -> void:
+	popup_flag = f
+	if popup_flag:
+		wip_popup.visible = true
+	else:
+		wip_popup.visible = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -31,10 +47,19 @@ func note_create_popup(f: bool) -> void:
 		n_create_popup.visible = true
 	else:
 		n_create_popup.visible = false
-		add_chapter_bars()
+		add_note_bars()
 
 
-func add_chapter_bars() -> void:
+func delete_popup(f: bool) -> void:
+	popup_flag = f
+	if popup_flag:
+		del_popup.visible = true
+	else:
+		del_popup.visible = false
+		add_note_bars()
+
+
+func add_note_bars() -> void:
 	# Remove all bars in VBox to prepare for updating
 	for n in v_box_note.get_children():
 		n.queue_free()

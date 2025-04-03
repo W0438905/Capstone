@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b8yjhxo37bed3"]
+[gd_scene load_steps=7 format=3 uid="uid://b8yjhxo37bed3"]
 
 [ext_resource type="Script" uid="uid://bhctvodkqn3fi" path="res://Scenes/Note_Select/note_select.gd" id="1_70j3v"]
 [ext_resource type="PackedScene" uid="uid://uqd1btdeeg5y" path="res://Scenes/Global_Background/global_background.tscn" id="1_x4q8u"]
+[ext_resource type="PackedScene" uid="uid://xbfplhp1ju2k" path="res://Scenes/WIP_Popup/wip_popup.tscn" id="5_871uj"]
 [ext_resource type="PackedScene" uid="uid://bxstr13pjt4sv" path="res://Scenes/Note_Bars/create_note_bar.tscn" id="5_k3k1o"]
+[ext_resource type="PackedScene" uid="uid://cgjnsmu1jekxi" path="res://Scenes/Delete_Popup/delete_popup.tscn" id="6_70j3v"]
 [ext_resource type="PackedScene" uid="uid://b2lv37i8i5nmx" path="res://Scenes/Note_Popups/note_create_popup.tscn" id="6_rpo7h"]
 
 [node name="NoteSelect" type="CanvasLayer"]
@@ -75,6 +77,12 @@ size_flags_horizontal = 1
 layout_mode = 2
 
 [node name="NoteCreatePopup" parent="." instance=ExtResource("6_rpo7h")]
+visible = false
+
+[node name="WIPPopup" parent="." instance=ExtResource("5_871uj")]
+visible = false
+
+[node name="DeletePopup" parent="." instance=ExtResource("6_70j3v")]
 visible = false
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Heading/BackButton" to="." method="_on_back_button_pressed"]

@@ -4,6 +4,7 @@ var story_info: Dictionary
 var chapter_info: Dictionary
 var note_info: Dictionary
 var flip_flop: String # Controls the queries made in the content page
+var del_info: Array
 
 
 func _ready() -> void:
@@ -104,3 +105,11 @@ func set_flip_flop(cn: String) -> void:
 
 func get_flip_flop() -> String:
 	return flip_flop
+
+
+func set_prep_delete(info: Array) -> void:
+	del_info = info
+
+
+func get_prep_delete() -> Array:
+	return del_info

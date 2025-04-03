@@ -37,12 +37,16 @@ func _on_menu_item_selected(id: int) -> void:
 	match id:
 		0:
 			print("Info")
+			SignalManager.wip_popup.emit(true)
 		1:
 			print("Edit")
 			#StoryManager.set_chapter_info(chapter_info)
 			#SignalManager.chapter_edit_popup.emit(true)
+			SignalManager.wip_popup.emit(true)
 		2:
 			print("Delete")
+			StoryManager.set_prep_delete(["Chapters", "chapterId", chapter_info["chapter_id"], chapter_info["title"]])
+			SignalManager.delete_popup.emit(true)
 
 
 func _on_bar_button_pressed() -> void:

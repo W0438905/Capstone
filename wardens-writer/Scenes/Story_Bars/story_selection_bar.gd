@@ -9,6 +9,7 @@ class_name StoryBar
 const FONT_SIZE: int = 32
 
 var story_info: Dictionary
+var del_info: Array
 
 
 func _ready() -> void:
@@ -37,13 +38,17 @@ func _on_menu_item_selected(id: int) -> void:
 	match id:
 		0:
 			print("Info")
+			SignalManager.wip_popup.emit(true)
 		1:
 			StoryManager.set_story_info(story_info)
 			SignalManager.story_edit_popup.emit(true)
 		2:
 			print("Delete")
+			StoryManager.set_prep_delete(["Stories", "storyId", story_info["story_id"], story_info["title"]])
+			SignalManager.delete_popup.emit(true)
 		3:
 			print("Export As")
+			SignalManager.wip_popup.emit(true)
 
 
 # Main story bar button

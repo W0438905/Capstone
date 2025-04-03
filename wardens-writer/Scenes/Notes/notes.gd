@@ -4,6 +4,8 @@ extends CanvasLayer
 @onready var back_button: Button = $MarginContainer/VBoxContainer/Heading/BackButton
 @onready var page_label: Label = $MarginContainer/VBoxContainer/Heading/PageLabel
 
+
+
 const NOTE_STORY_SELECTION_BAR = preload("res://Scenes/Note_Bars/note_story_selection_bar.tscn")
 
 var popup_flag: bool = false
@@ -12,6 +14,7 @@ var popup_flag: bool = false
 func _ready() -> void:
 	page_label.add_theme_font_size_override("font_size", 48)
 	back_button.add_theme_font_size_override("font_size", 48)
+	
 	add_story_bars()
 
 

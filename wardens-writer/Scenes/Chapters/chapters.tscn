@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dviccqhrncgnw"]
+[gd_scene load_steps=7 format=3 uid="uid://dviccqhrncgnw"]
 
 [ext_resource type="PackedScene" uid="uid://uqd1btdeeg5y" path="res://Scenes/Global_Background/global_background.tscn" id="1_2eyxk"]
 [ext_resource type="Script" uid="uid://bf05b3smkihfu" path="res://Scenes/Chapters/chapters.gd" id="1_bhv5b"]
 [ext_resource type="PackedScene" uid="uid://bmh62qrdivykb" path="res://Scenes/Chapter_Bars/create_chapter_bar.tscn" id="4_v5jef"]
+[ext_resource type="PackedScene" uid="uid://xbfplhp1ju2k" path="res://Scenes/WIP_Popup/wip_popup.tscn" id="5_bhv5b"]
+[ext_resource type="PackedScene" uid="uid://cgjnsmu1jekxi" path="res://Scenes/Delete_Popup/delete_popup.tscn" id="6_3wfrm"]
 [ext_resource type="PackedScene" uid="uid://cfl1o7dnq588j" path="res://Scenes/Chapter_Popups/chapter_create_popup.tscn" id="7_xx4i6"]
 
 [node name="ChaptersPage" type="CanvasLayer"]
@@ -77,6 +79,12 @@ layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="ChapterCreatePopup" parent="." instance=ExtResource("7_xx4i6")]
+visible = false
+
+[node name="WIPPopup" parent="." instance=ExtResource("5_bhv5b")]
+visible = false
+
+[node name="DeletePopup" parent="." instance=ExtResource("6_3wfrm")]
 visible = false
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Heading/BackButton" to="." method="_on_back_button_pressed"]

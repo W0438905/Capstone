@@ -1,0 +1,80 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgjnsmu1jekxi"]
+
+[ext_resource type="PackedScene" uid="uid://uqd1btdeeg5y" path="res://Scenes/Global_Background/global_background.tscn" id="1_v87xw"]
+[ext_resource type="Script" uid="uid://htaioocj26j5" path="res://Scenes/Delete_Popup/delete_popup.gd" id="1_vt274"]
+
+[node name="DeletePopup" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vt274")
+
+[node name="GlobalBackground" parent="." instance=ExtResource("1_v87xw")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -192.0
+offset_right = 256.0
+offset_bottom = 192.0
+
+[node name="MarginContainer" type="MarginContainer" parent="GlobalBackground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GlobalBackground/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="GlobalBackground/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+text = "Beans
+Beans"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+text_overrun_behavior = 3
+
+[node name="CaptionLabel" type="Label" parent="GlobalBackground/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Are you sure you want to delete?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="GlobalBackground/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="Buttons" type="HBoxContainer" parent="GlobalBackground/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 80
+alignment = 1
+
+[node name="ConfirmButton" type="Button" parent="GlobalBackground/MarginContainer/VBoxContainer/Buttons"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+text = "Delete"
+
+[node name="CancelButton" type="Button" parent="GlobalBackground/MarginContainer/VBoxContainer/Buttons"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+text = "Cancel"
+
+[connection signal="pressed" from="GlobalBackground/MarginContainer/VBoxContainer/Buttons/ConfirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="GlobalBackground/MarginContainer/VBoxContainer/Buttons/CancelButton" to="." method="_on_cancel_button_pressed"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dx5dwnnoc3oer"]
 
-[ext_resource type="Texture2D" uid="uid://b2mi7v0dcwpf3" path="res://Assets/Button.png" id="1_mnfuw"]
 [ext_resource type="Theme" uid="uid://cldijs2xqwyow" path="res://Themes/light_blue_theme.tres" id="1_ovllr"]
+[ext_resource type="Texture2D" uid="uid://cio7l366r3cyf" path="res://Assets/newButton.png" id="2_ovllr"]
 [ext_resource type="Script" uid="uid://cxp12qgkir8xm" path="res://Scenes/Main_Menu_Button/main_menu_button.gd" id="2_yope0"]
 
 [node name="MainMenuButton" type="TextureButton"]
@@ -19,7 +19,7 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("1_ovllr")
-texture_normal = ExtResource("1_mnfuw")
+texture_normal = ExtResource("2_ovllr")
 script = ExtResource("2_yope0")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]

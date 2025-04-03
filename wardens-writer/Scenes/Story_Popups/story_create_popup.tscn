@@ -41,9 +41,7 @@ theme_override_constants/margin_bottom = 24
 [node name="VBoxContainer" type="VBoxContainer" parent="GlobalBackground/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
-
-[node name="Spacer2" type="Control" parent="GlobalBackground/MarginContainer/VBoxContainer"]
-layout_mode = 2
+alignment = 1
 
 [node name="TopLabel" type="Label" parent="GlobalBackground/MarginContainer/VBoxContainer"]
 layout_mode = 2

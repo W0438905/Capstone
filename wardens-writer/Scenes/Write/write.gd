@@ -1,10 +1,13 @@
 extends CanvasLayer
 
 @onready var s_create_popup: Control = $StoryCreatePopup
-@onready var s_edit_popup: Control = $StoryEditPopup
 @onready var v_box_story: VBoxContainer = $MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxStory
 @onready var page_label: Label = $MarginContainer/VBoxContainer/Heading/PageLabel
 @onready var back_button: Button = $MarginContainer/VBoxContainer/Heading/BackButton
+@onready var s_edit_popup: Control = $StoryEditPopup
+@onready var del_popup: Control = $DeletePopup
+
+@onready var wip_popup: Control = $WIPPopup
 
 const STORY_SELECTION_BAR = preload("res://Scenes/Story_Bars/story_selection_bar.tscn")
 
@@ -16,7 +19,19 @@ func _ready() -> void:
 	back_button.add_theme_font_size_override("font_size", 48)
 	SignalManager.story_create_popup.connect(story_create_popup)
 	SignalManager.story_edit_popup.connect(story_edit_popup)
+	SignalManager.delete_popup.connect(delete_popup)
+	
+	SignalManager.wip_popup.connect(wip)
+	
 	add_story_bars()
+
+
+func wip(f: bool) -> void:
+	popup_flag = f
+	if popup_flag:
+		wip_popup.visible = true
+	else:
+		wip_popup.visible = false
 
 
 func _process(_delta: float) -> void:
@@ -39,6 +54,15 @@ func story_edit_popup(f: bool) -> void:
 		s_edit_popup.visible = true
 	else:
 		s_edit_popup.visible = false
+		add_story_bars()
+
+
+func delete_popup(f: bool) -> void:
+	popup_flag = f
+	if popup_flag:
+		del_popup.visible = true
+	else:
+		del_popup.visible = false
 		add_story_bars()
 
 

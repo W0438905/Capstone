@@ -1,0 +1,60 @@
+[gd_scene load_steps=3 format=3 uid="uid://xbfplhp1ju2k"]
+
+[ext_resource type="Script" uid="uid://cintamn7ruj3j" path="res://Scenes/WIP_Popup/wip_popup.gd" id="1_5hb1m"]
+[ext_resource type="PackedScene" uid="uid://uqd1btdeeg5y" path="res://Scenes/Global_Background/global_background.tscn" id="1_p4dh7"]
+
+[node name="WIPPopup" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5hb1m")
+
+[node name="GlobalBackground" parent="." instance=ExtResource("1_p4dh7")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -192.0
+offset_right = 256.0
+offset_bottom = 192.0
+
+[node name="MarginContainer" type="MarginContainer" parent="GlobalBackground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GlobalBackground/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Label1" type="Label" parent="GlobalBackground/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Sorry!"
+
+[node name="Label2" type="Label" parent="GlobalBackground/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "This feature is currently under development."
+
+[node name="Button" type="Button" parent="GlobalBackground/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Return"
+
+[connection signal="pressed" from="GlobalBackground/MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

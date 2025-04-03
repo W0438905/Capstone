@@ -7,3 +7,7 @@ signal story_edit_popup(flag: bool)
 signal chapter_create_popup(flag: bool)
 
 signal note_create_popup(flag: bool)
+
+signal delete_popup(flag: bool)
+
+signal wip_popup(flag: bool)

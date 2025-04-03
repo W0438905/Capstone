@@ -7,6 +7,10 @@ extends CanvasLayer
 @onready var note_list_button: Button = $MarginContainer/VBoxContainer/TopBar/NoteListButton
 @onready var content_edit: TextEdit = $MarginContainer/VBoxContainer/MarginContainer/ContentEdit
 @onready var autosave_timer: Timer = $AutosaveTimer
+@onready var saved_timer: Timer = $SavedTimer
+
+@onready var wip_popup: Control = $WIPPopup
+var popup_flag: bool = false
 
 var cn: String
 var info: Dictionary
@@ -23,12 +27,23 @@ func _ready() -> void:
 	save_button.add_theme_font_size_override("font_size", 20)
 	required_label.add_theme_font_size_override("font_size", 16)
 	required_label.add_theme_color_override("font_color", Color.DARK_RED) # set to ab000d later
+	
+	SignalManager.wip_popup.connect(wip)
+	
 	chapter_or_note()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+func wip(f: bool) -> void:
+	popup_flag = f
+	if popup_flag:
+		wip_popup.visible = true
+	else:
+		wip_popup.visible = false
+
+
 func _process(_delta: float) -> void:
-	pass
+	if Input.is_action_just_pressed("save"):
+		_on_save_button_pressed()
 
 
 func chapter_or_note() -> void:
@@ -102,7 +117,18 @@ func _on_save_button_pressed() -> void:
 	
 	DatabaseManager.db.query_with_bindings(content_query, content_params)
 	DatabaseManager.db.query_with_bindings(story_query, story_params)
+	
+	save_button.text = "Saved"
+	saved_timer.start()
 
 
-func _on_timer_timeout() -> void:
+func _on_autosave_timer_timeout() -> void:
 	_on_save_button_pressed()
+
+
+func _on_saved_timer_timeout() -> void:
+	save_button.text = "Save"
+
+
+func _on_note_list_button_pressed() -> void:
+	SignalManager.wip_popup.emit(true)

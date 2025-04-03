@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bywtsru5l0byq"]
+[gd_scene load_steps=4 format=3 uid="uid://bywtsru5l0byq"]
 
 [ext_resource type="PackedScene" uid="uid://uqd1btdeeg5y" path="res://Scenes/Global_Background/global_background.tscn" id="1_ms0j7"]
 [ext_resource type="Script" uid="uid://wpi1kdcdc8la" path="res://Scenes/Content/content.gd" id="1_wtpso"]
+[ext_resource type="PackedScene" uid="uid://xbfplhp1ju2k" path="res://Scenes/WIP_Popup/wip_popup.tscn" id="3_sc8o8"]
 
 [node name="ContentPage" type="CanvasLayer"]
 script = ExtResource("1_wtpso")
@@ -31,8 +32,10 @@ layout_mode = 2
 text = " <= "
 
 [node name="SaveButton" type="Button" parent="MarginContainer/VBoxContainer/TopBar"]
+custom_minimum_size = Vector2(65, 0)
 layout_mode = 2
-text = " Save "
+tooltip_text = "Ctrl + S"
+text = "Save"
 
 [node name="RequiredLabel" type="Label" parent="MarginContainer/VBoxContainer/TopBar"]
 visible = false
@@ -46,6 +49,7 @@ placeholder_text = "Add Title Here"
 
 [node name="NoteListButton" type="Button" parent="MarginContainer/VBoxContainer/TopBar"]
 layout_mode = 2
+tooltip_text = "Displays all notes relevant to current story next to text box."
 text = " = "
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
@@ -59,9 +63,18 @@ placeholder_text = "Start Writing Here"
 wrap_mode = 1
 
 [node name="AutosaveTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 30.0
 autostart = true
+
+[node name="SavedTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="WIPPopup" parent="." instance=ExtResource("3_sc8o8")]
+visible = false
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/TopBar/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/TopBar/SaveButton" to="." method="_on_save_button_pressed"]
-[connection signal="timeout" from="AutosaveTimer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TopBar/NoteListButton" to="." method="_on_note_list_button_pressed"]
+[connection signal="timeout" from="AutosaveTimer" to="." method="_on_autosave_timer_timeout"]
+[connection signal="timeout" from="SavedTimer" to="." method="_on_saved_timer_timeout"]
